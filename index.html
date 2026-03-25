@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutes i Punts - Camina i Guanya</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <style>
+        :root { --primary: #2e7d32; --secondary: #f9a825; }
+        body { background-color: #f1f8e9; }
+        .card { border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-ruta { background-color: var(--primary); color: white; }
+        .puntos-badge { background-color: var(--secondary); color: black; font-weight: bold; }
+        #app-content { display: none; } /* Se mostrará tras el login */
+    </style>
+</head>
+<body>
+
+<div class="container py-4">
+    <h1 class="text-center mb-4" style="color: var(--primary);">🌲 Rutes i Punts</h1>
+
+    <div id="auth-section" class="card p-4">
+        <h4>Benvingut/da</h4>
+        <p>Registra't per començar a sumar punts amb les teves rutes.</p>
+        <input type="email" id="email" class="form-control mb-2" placeholder="Correu electrònic">
+        <input type="password" id="pass" class="form-control mb-2" placeholder="Contrasenya">
+        <button id="btnEntrar" class="btn btn-ruta btn-block">Entrar</button>
+        <button id="btnRegistre" class="btn btn-outline-success btn-block">Crear compte</button>
+    </div>
+
+    <div id="app-content">
+        <div class="card p-3">
+            <h5>El teu Perfil</h5>
+            <p id="user-info"></p>
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Punts acumulats:</span>
+                <span class="badge puntos-badge p-2" id="user-points">0 PTS</span>
+            </div>
+            <button id="btnLogOut" class="btn btn-sm btn-link text-danger">Tancar sessió</button>
+        </div>
+
+        <div class="card p-3">
+            <h5>Rutes de la Setmana</h5>
+            <div class="list-group">
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Camí de Ronda (5km)</strong><br>
+                        <small>Dificultat: Baixa</small>
+                    </div>
+                    <button class="btn btn-sm btn-ruta">+50 Punts</button>
+                </div>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Ascens al Matagalls (12km)</strong><br>
+                        <small>Dificultat: Mitjana</small>
+                    </div>
+                    <button class="btn btn-sm btn-ruta">+150 Punts</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3">
+            <h5>Bescanviar Punts</h5>
+            <div class="row text-center">
+                <div class="col-6">
+                    <div class="border rounded p-2 mb-2">
+                        <small>Descompte 20% Botiga</small><br>
+                        <strong>100 PTS</strong>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="border rounded p-2 mb-2">
+                        <small>Ampolla d'aigua Zelva</small><br>
+                        <strong>500 PTS</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+<script>
+    // AQUÍ PEGARÁS TU CONFIGURACIÓN DE FIREBASE
+    const firebaseConfig = {
+        apiKey: "EL_TEU_API_KEY",
+        authDomain: "EL_TEU_ID.firebaseapp.com",
+        projectId: "EL_TEU_ID",
+        storageBucket: "EL_TEU_ID.appspot.com",
+        messagingSenderId: "EL_TEU_SENDER_ID",
+        appId: "EL_TEU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Lógica básica de Auth
+    const auth = firebase.auth();
+    const authSection = document.getElementById('auth-section');
+    const appContent = document.getElementById('app-content');
+
+    // Botons
+    document.getElementById('btnRegistre').onclick = () => {
+        auth.createUserWithEmailAndPassword(document.getElementById('email').value.trim(), document.getElementById('pass').value)
+        .catch(e => alert(e.message));
+    };
+
+    document.getElementById('btnEntrar').onclick = () => {
+        auth.signInWithEmailAndPassword(document.getElementById('email').value.trim(), document.getElementById('pass').value)
+        .catch(e => alert(e.message));
+    };
+
+    document.getElementById('btnLogOut').onclick = () => auth.signOut();
+
+    // Observador
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            authSection.style.display = 'none';
+            appContent.style.display = 'block';
+            document.getElementById('user-info').innerText = user.email;
+        } else {
+            authSection.style.display = 'block';
+            appContent.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
