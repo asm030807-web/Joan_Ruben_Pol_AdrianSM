@@ -1,128 +1,617 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rutes i Punts - Camina i Guanya</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <style>
-        :root { --primary: #2e7d32; --secondary: #f9a825; }
-        body { background-color: #f1f8e9; }
-        .card { border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn-ruta { background-color: var(--primary); color: white; }
-        .puntos-badge { background-color: var(--secondary); color: black; font-weight: bold; }
-        #app-content { display: none; } /* Se mostrará tras el login */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallty</title>
+
+  <style>
+    /* =========================
+       RESET BÁSICO
+    ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #d9d9d9;
+      padding: 14px;
+    }
+
+    /* =========================
+       MARCO GENERAL NEGRO
+    ========================= */
+    .app-frame {
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+      background: #0f0f0f;
+      border: 2px solid #000;
+      border-radius: 32px;
+      padding: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    }
+
+    /* =========================
+       BARRA SUPERIOR
+    ========================= */
+    .topbar {
+      height: 58px;
+      border-radius: 24px;
+      background: linear-gradient(to right, #111, #1a1a1a);
+      border: 1px solid #4c4c4c;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px 0 0;
+      margin-bottom: 10px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-box {
+      width: 78px;
+      height: 40px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #0f8cff, #06d17c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-left: 4px;
+    }
+
+    .logo-box img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    .menu {
+      display: flex;
+      gap: 26px;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .profile-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #efefef, #8f939d 70%);
+      border: 1px solid #7b7b7b;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .profile-circle::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f4f4f4;
+      top: 6px;
+      left: 11px;
+    }
+
+    .profile-circle::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 9px;
+      border-radius: 10px 10px 7px 7px;
+      background: #f4f4f4;
+      bottom: 6px;
+      left: 8px;
+    }
+
+    /* =========================
+       BLOQUE BLANCO CENTRAL
+    ========================= */
+    .hero {
+      background: #ededed;
+      border-radius: 18px;
+      min-height: 285px;
+      padding: 30px 28px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #cfcfcf;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    .hero-logo {
+      width: 170px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .hero-title {
+      font-size: 84px;
+      line-height: 1;
+      font-weight: 800;
+      color: #000;
+    }
+
+    /* =========================
+       ZONA OSCURA INFERIOR
+    ========================= */
+    .content {
+      background: linear-gradient(to right, #141414, #181818);
+      color: white;
+      padding: 18px 18px 28px;
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+
+    .content h2 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .content p {
+      font-size: 17px;
+      line-height: 1.55;
+      color: #f1f1f1;
+      max-width: 840px;
+    }
+
+    /* =========================
+       TARJETA DE AUTENTICACIÓN
+    ========================= */
+    .auth-card {
+      margin-top: 18px;
+      background: #f6f6f6;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid #d4d4d4;
+    }
+
+    .auth-card h3 {
+      margin-bottom: 12px;
+      color: #111;
+      font-size: 22px;
+    }
+
+    .auth-card p {
+      color: #333;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border: 1px solid #cfcfcf;
+      border-radius: 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .auth-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .btn-primary {
+      background: #0d8b56;
+      color: white;
+    }
+
+    .btn-outline {
+      background: white;
+      color: #111;
+      border: 1px solid #c9c9c9;
+    }
+
+    .btn-google {
+      width: 100%;
+      background: #ffffff;
+      color: #111;
+      border: 1px solid #c9c9c9;
+      margin-bottom: 10px;
+    }
+
+    .btn-logout {
+      background: #1b1b1b;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .status-box {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #ececec;
+      color: #111;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .user-panel {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid #d8d8d8;
+    }
+
+    .user-panel strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .small-text {
+      font-size: 13px;
+      color: #444;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 700px) {
+      .hero-title {
+        font-size: 48px;
+      }
+
+      .hero-logo {
+        width: 110px;
+      }
+
+      .auth-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        gap: 14px;
+      }
+
+      .menu a {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container py-4">
-    <h1 class="text-center mb-4" style="color: var(--primary);">🌲 Rutes i Punts</h1>
+  <div class="app-frame">
 
-    <div id="auth-section" class="card p-4">
-        <h4>Benvingut/da</h4>
-        <p>Registra't per començar a sumar punts amb les teves rutes.</p>
-        <input type="email" id="email" class="form-control mb-2" placeholder="Correu electrònic">
-        <input type="password" id="pass" class="form-control mb-2" placeholder="Contrasenya">
-        <button id="btnEntrar" class="btn btn-ruta btn-block">Entrar</button>
-        <button id="btnRegistre" class="btn btn-outline-success btn-block">Crear compte</button>
-    </div>
-
-    <div id="app-content">
-        <div class="card p-3">
-            <h5>El teu Perfil</h5>
-            <p id="user-info"></p>
-            <div class="d-flex justify-content-between align-items-center">
-                <span>Punts acumulats:</span>
-                <span class="badge puntos-badge p-2" id="user-points">0 PTS</span>
-            </div>
-            <button id="btnLogOut" class="btn btn-sm btn-link text-danger">Tancar sessió</button>
+    <!-- BARRA SUPERIOR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="logo-box">
+          <img src="logo-wallty.png" alt="Logo Wallty">
         </div>
 
-        <div class="card p-3">
-            <h5>Rutes de la Setmana</h5>
-            <div class="list-group">
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Camí de Ronda (5km)</strong><br>
-                        <small>Dificultat: Baixa</small>
-                    </div>
-                    <button class="btn btn-sm btn-ruta">+50 Punts</button>
-                </div>
-                <div class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Ascens al Matagalls (12km)</strong><br>
-                        <small>Dificultat: Mitjana</small>
-                    </div>
-                    <button class="btn btn-sm btn-ruta">+150 Punts</button>
-                </div>
-            </div>
+        <nav class="menu">
+          <a href="#">Home</a>
+          <a href="#">Home</a>
+          <a href="#">Home</a>
+        </nav>
+      </div>
+
+      <div class="profile-circle"></div>
+    </header>
+
+    <!-- BLOQUE CENTRAL -->
+    <section class="hero">
+      <div class="hero-content">
+        <img src="logo-wallty.png" alt="Logo gran Wallty" class="hero-logo">
+        <h1 class="hero-title">Wallty</h1>
+      </div>
+    </section>
+
+    <!-- TEXTO INFERIOR -->
+    <section class="content">
+      <h2>LOREM IPSUM</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu arcu, cursus et felis at,
+        laoreet egestas sem. Fusce dolor arcu, malesuada ac ligula mattis, auctor tincidunt magna.
+        Praesent consequat pharetra nunc nec porttitor. Curabitur quis purus et massa ultrices
+        ullamcorper sed eget lectus.
+      </p>
+
+      <!-- AUTENTICACIÓN -->
+      <div class="auth-card">
+        <h3>Accés / Registre</h3>
+        <p>
+          Pots entrar amb correu i contrasenya o amb Google. Si et registres amb correu,
+          t’enviarem un email de verificació.
+        </p>
+
+        <div id="auth-section">
+          <input type="email" id="email" placeholder="Correu electrònic">
+          <input type="password" id="pass" placeholder="Contrasenya">
+
+          <div class="auth-buttons">
+            <button class="btn btn-primary" id="btnEntrar">Entrar</button>
+            <button class="btn btn-outline" id="btnRegistre">Crear compte</button>
+          </div>
+
+          <button class="btn btn-google" id="btnGoogle">Entrar amb Google</button>
+
+          <div class="status-box" id="statusBox">
+            Encara no has iniciat sessió.
+          </div>
         </div>
 
-        <div class="card p-3">
-            <h5>Bescanviar Punts</h5>
-            <div class="row text-center">
-                <div class="col-6">
-                    <div class="border rounded p-2 mb-2">
-                        <small>Descompte 20% Botiga</small><br>
-                        <strong>100 PTS</strong>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="border rounded p-2 mb-2">
-                        <small>Ampolla d'aigua Zelva</small><br>
-                        <strong>500 PTS</strong>
-                    </div>
-                </div>
-            </div>
+        <div id="verify-section" class="hidden">
+          <div class="status-box">
+            T’hem enviat un correu de verificació. Revisa la safata d’entrada, fes clic a l’enllaç i després prem “Ja he verificat”.
+          </div>
+          <button class="btn btn-primary" id="btnReloadUser" style="margin-top:10px;">Ja he verificat</button>
+          <button class="btn btn-outline" id="btnResendVerification" style="margin-top:10px;">Reenviar correu</button>
+          <button class="btn btn-logout" id="btnLogoutVerify">Tancar sessió</button>
         </div>
-    </div>
-</div>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+        <div id="app-content" class="hidden">
+          <div class="user-panel">
+            <strong>Usuari autenticat</strong>
+            <div id="user-info">-</div>
+            <div class="small-text" id="provider-info"></div>
+          </div>
+          <button class="btn btn-logout" id="btnLogOut">Tancar sessió</button>
+        </div>
+      </div>
+    </section>
+  </div>
 
-<script>
-    // AQUÍ PEGARÁS TU CONFIGURACIÓN DE FIREBASE
+  <!-- FIREBASE SDK COMPAT -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+  <script>
+    /* =========================================================
+       1) PEGA AQUÍ TU CONFIGURACIÓN REAL DE FIREBASE
+    ========================================================== */
     const firebaseConfig = {
-        apiKey: "EL_TEU_API_KEY",
-        authDomain: "EL_TEU_ID.firebaseapp.com",
-        projectId: "EL_TEU_ID",
-        storageBucket: "EL_TEU_ID.appspot.com",
-        messagingSenderId: "EL_TEU_SENDER_ID",
-        appId: "EL_TEU_APP_ID"
+      apiKey: "TU_API_KEY",
+      authDomain: "TU_PROYECTO.firebaseapp.com",
+      projectId: "TU_PROJECT_ID",
+      storageBucket: "TU_PROYECTO.appspot.com",
+      messagingSenderId: "TU_MESSAGING_SENDER_ID",
+      appId: "TU_APP_ID"
     };
+
     firebase.initializeApp(firebaseConfig);
-
-    // Lógica básica de Auth
     const auth = firebase.auth();
-    const authSection = document.getElementById('auth-section');
-    const appContent = document.getElementById('app-content');
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    // Botons
-    document.getElementById('btnRegistre').onclick = () => {
-        auth.createUserWithEmailAndPassword(document.getElementById('email').value.trim(), document.getElementById('pass').value)
-        .catch(e => alert(e.message));
+    /* =========================================================
+       2) ELEMENTOS DEL DOM
+    ========================================================== */
+    const authSection = document.getElementById("auth-section");
+    const verifySection = document.getElementById("verify-section");
+    const appContent = document.getElementById("app-content");
+    const statusBox = document.getElementById("statusBox");
+    const userInfo = document.getElementById("user-info");
+    const providerInfo = document.getElementById("provider-info");
+
+    const emailInput = document.getElementById("email");
+    const passInput = document.getElementById("pass");
+
+    const btnEntrar = document.getElementById("btnEntrar");
+    const btnRegistre = document.getElementById("btnRegistre");
+    const btnGoogle = document.getElementById("btnGoogle");
+    const btnReloadUser = document.getElementById("btnReloadUser");
+    const btnResendVerification = document.getElementById("btnResendVerification");
+    const btnLogoutVerify = document.getElementById("btnLogoutVerify");
+    const btnLogOut = document.getElementById("btnLogOut");
+
+    /* =========================================================
+       3) FUNCIONES DE APOYO
+    ========================================================== */
+    function showLoggedOut() {
+      authSection.classList.remove("hidden");
+      verifySection.classList.add("hidden");
+      appContent.classList.add("hidden");
+      statusBox.textContent = "Encara no has iniciat sessió.";
+    }
+
+    function showVerifyPending(user) {
+      authSection.classList.add("hidden");
+      verifySection.classList.remove("hidden");
+      appContent.classList.add("hidden");
+      userInfo.textContent = user.email || "Sense correu";
+      providerInfo.textContent = "Compte creat amb correu i contrasenya. Falta verificar el correu.";
+    }
+
+    function showLoggedIn(user, providerName) {
+      authSection.classList.add("hidden");
+      verifySection.classList.add("hidden");
+      appContent.classList.remove("hidden");
+      userInfo.textContent = user.email || "Usuari sense correu";
+      providerInfo.textContent = "Mètode d'accés: " + providerName;
+    }
+
+    function getMainProvider(user) {
+      if (!user || !user.providerData || user.providerData.length === 0) {
+        return "desconegut";
+      }
+
+      const ids = user.providerData.map(p => p.providerId);
+
+      if (ids.includes("google.com")) return "Google";
+      if (ids.includes("password")) return "Correu i contrasenya";
+      return ids[0];
+    }
+
+    /* =========================================================
+       4) REGISTRO CON EMAIL + ENVÍO DE VERIFICACIÓN
+    ========================================================== */
+    btnRegistre.onclick = async () => {
+      const email = emailInput.value.trim();
+      const pass = passInput.value;
+
+      if (!email || !pass) {
+        alert("Escriu el correu i la contrasenya.");
+        return;
+      }
+
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, pass);
+        await userCredential.user.sendEmailVerification();
+        alert("Compte creat. T’hem enviat un correu de verificació.");
+        showVerifyPending(userCredential.user);
+      } catch (error) {
+        alert(error.message);
+      }
     };
 
-    document.getElementById('btnEntrar').onclick = () => {
-        auth.signInWithEmailAndPassword(document.getElementById('email').value.trim(), document.getElementById('pass').value)
-        .catch(e => alert(e.message));
-    };
+    /* =========================================================
+       5) LOGIN CON EMAIL
+    ========================================================== */
+    btnEntrar.onclick = async () => {
+      const email = emailInput.value.trim();
+      const pass = passInput.value;
 
-    document.getElementById('btnLogOut').onclick = () => auth.signOut();
+      if (!email || !pass) {
+        alert("Escriu el correu i la contrasenya.");
+        return;
+      }
 
-    // Observador
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            authSection.style.display = 'none';
-            appContent.style.display = 'block';
-            document.getElementById('user-info').innerText = user.email;
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, pass);
+        await userCredential.user.reload();
+
+        if (userCredential.user.emailVerified) {
+          showLoggedIn(userCredential.user, "Correu i contrasenya");
         } else {
-            authSection.style.display = 'block';
-            appContent.style.display = 'none';
+          showVerifyPending(userCredential.user);
         }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    /* =========================================================
+       6) LOGIN CON GOOGLE
+    ========================================================== */
+    btnGoogle.onclick = async () => {
+      try {
+        const result = await auth.signInWithPopup(googleProvider);
+        showLoggedIn(result.user, "Google");
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    /* =========================================================
+       7) REVISAR SI EL USUARIO YA VERIFICÓ EL EMAIL
+    ========================================================== */
+    btnReloadUser.onclick = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      try {
+        await user.reload();
+        const updatedUser = auth.currentUser;
+
+        if (updatedUser.emailVerified) {
+          showLoggedIn(updatedUser, "Correu i contrasenya");
+        } else {
+          alert("Encara no consta com a verificat. Torna-ho a provar després de confirmar l’email.");
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    /* =========================================================
+       8) REENVIAR EMAIL DE VERIFICACIÓN
+    ========================================================== */
+    btnResendVerification.onclick = async () => {
+      const user = auth.currentUser;
+      if (!user) {
+        alert("No hi ha cap usuari autenticat.");
+        return;
+      }
+
+      try {
+        await user.sendEmailVerification();
+        alert("Correu de verificació reenviat.");
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    /* =========================================================
+       9) LOGOUT
+    ========================================================== */
+    btnLogoutVerify.onclick = () => auth.signOut();
+    btnLogOut.onclick = () => auth.signOut();
+
+    /* =========================================================
+       10) OBSERVADOR DE SESIÓN
+    ========================================================== */
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        showLoggedOut();
+        return;
+      }
+
+      try {
+        await user.reload();
+      } catch (e) {
+        console.log(e);
+      }
+
+      const currentUser = auth.currentUser;
+      const providerName = getMainProvider(currentUser);
+      const providerIds = (currentUser.providerData || []).map(p => p.providerId);
+      const isGoogleUser = providerIds.includes("google.com");
+
+      if (isGoogleUser) {
+        showLoggedIn(currentUser, providerName);
+        return;
+      }
+
+      if (currentUser.emailVerified) {
+        showLoggedIn(currentUser, providerName);
+      } else {
+        showVerifyPending(currentUser);
+      }
     });
-</script>
+  </script>
 </body>
 </html>
