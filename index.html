@@ -69,6 +69,7 @@
     .menu {
       display: flex;
       gap: 26px;
+      position: relative; /* ESTO ES NUEVO Y MUY IMPORTANTE */
     }
 
     .menu a {
@@ -81,6 +82,17 @@
 
     .menu a.active {
       color: #06d17c;
+    }
+
+    #slide-indicator {
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      height: 3px;
+      background-color: #06d17c;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+      z-index: 0;
     }
 
     .profile-circle {
@@ -240,24 +252,6 @@
       .menu a { font-size: 12px; }
       .hero-nosaltres h1 { font-size: 40px; }
     }
-    /* Asegúrate de que .menu tenga position: relative */
-.menu {
-  display: flex;
-  gap: 26px;
-  position: relative; /* ESTO ES NUEVO Y MUY IMPORTANTE */
-}
-
-/* EL ESTILO DE LA BARRITA QUE SE MUEVE */
-#slide-indicator {
-  position: absolute;
-  bottom: -6px; /* Para que quede justo debajo de las letras */
-  left: 0;
-  height: 3px; /* Grosor de la línea */
-  background-color: #06d17c; /* El color verde de Wallty */
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out; /* Esta es la magia que lo hace deslizar */
-  z-index: 0;
-}
   </style>
 </head>
 <body>
@@ -271,16 +265,15 @@
         </div>
 
         <nav class="menu" id="main-menu">
-  <div id="slide-indicator"></div> 
-
-  <a href="#" onclick="navigateTo('home', this)" class="active">Home</a>
-  <a href="#" onclick="navigateTo('rutes', this)">Rutes</a>
-  <a href="#" onclick="navigateTo('productes', this)">Productes</a>
-  <a href="#" onclick="navigateTo('sobre_nosaltres', this)">Sobre nosaltres</a>
-</nav>
+          <div id="slide-indicator"></div> 
+          <a href="#" onclick="navigateTo('home', this)" class="active">Home</a>
+          <a href="#" onclick="navigateTo('rutes', this)">Rutes</a>
+          <a href="#" onclick="navigateTo('productes', this)">Productes</a>
+          <a href="#" onclick="navigateTo('sobre_nosaltres', this)">Sobre nosaltres</a>
+        </nav>
       </div>
 
-      <div class="profile-circle"></div>
+      <div class="profile-circle" onclick="navigateTo('perfil', null)" style="cursor: pointer; overflow: hidden;" title="El meu perfil"></div>
     </header>
 
     <div id="pages-container">
@@ -445,10 +438,11 @@
         <section class="section-about">
           <h2>L'equip</h2>
           <div class="team">
-            <div class="member"><img src="https://i.pravatar.cc/100?img=1"><strong>Marc</strong><p>CEO</p></div>
-            <div class="member"><img src="https://i.pravatar.cc/100?img=2"><strong>Laia</strong><p>UX Designer</p></div>
-            <div class="member"><img src="https://i.pravatar.cc/100?img=3"><strong>Pol</strong><p>Developer</p></div>
-            <div class="member"><img src="https://i.pravatar.cc/100?img=4"><strong>Clara</strong><p>Marketing</p></div>
+            <div class="member"><img src="" alt=""><strong>Adrian</strong><p>CEO</p></div>
+            <div class="member"><img src="" alt=""><strong>Eric</strong><p>UX Designer</p></div>
+            <div class="member"><img src="" alt=""><strong>Pol</strong><p>Developer</p></div>
+            <div class="member"><img src="" alt=""><strong>Ruben</strong><p>Marketing</p></div>
+            <div class="member"><img src="" alt=""><strong>Joan</strong><p>Marketing</p></div>
           </div>
         </section>
 
@@ -459,10 +453,41 @@
         </section>
       </div>
 
-    </div> </div> <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="app.js"></script>
+      <div id="page-perfil" class="page-section hidden-page">
+        <section class="page-box">
+          <h1>El teu Perfil</h1>
+          <p>Aquí pots veure el teu progrés i gestionar el teu compte.</p>
 
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; color: #111;">
+              <h3 style="color: #06d17c; margin-bottom: 15px;">Dades d'usuari</h3>
+              <p><strong>Correu:</strong> <span id="perfil-email">Carregant...</span></p>
+              <p><strong>Estat:</strong> Actiu</p>
+              <button class="btn btn-logout" id="btnLogOutPerfil" style="margin-top: 20px;">Tancar sessió</button>
+            </div>
+
+            <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; text-align: center; display: flex; flex-direction: column; justify-content: center; color: #111;">
+              <h3>Punts Acumulats</h3>
+              <div style="font-size: 64px; font-weight: bold; color: #0d8b56;" id="perfil-punts">0</div>
+              <p style="color: #666; font-weight: bold;">EcoPoints</p>
+            </div>
+          </div>
+
+          <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; margin-top: 20px; width: 100%; color: #111;">
+            <h3 style="margin-bottom: 15px;">Historial de Rutes</h3>
+            <ul id="perfil-historial" style="list-style: none; padding: 0;">
+              <li style="padding: 10px; border-bottom: 1px solid #eee; color: #666;">Encara no has registrat cap ruta.</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="app.js"></script>
     
 </body>
 </html>
