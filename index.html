@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallty</title>
+  <title>Wallty - App</title>
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -15,22 +14,23 @@
     }
 
     body {
-      background: #d9d9d9;
+      background: #0f0f0f;
       padding: 14px;
     }
 
     .app-frame {
       width: 100%;
-      max-width: 920px;
+      max-width: 1800px;
       margin: 0 auto;
-      background: #0f0f0f;
+      background: #23282b;
       border: 2px solid #000;
       border-radius: 32px;
+      
       padding: 10px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.25);
     }
 
-
+    /* HEADER */
     .topbar {
       height: 58px;
       border-radius: 24px;
@@ -77,6 +77,11 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 700;
+      cursor: pointer;
+    }
+
+    .menu a.active {
+      color: #06d17c;
     }
 
     .profile-circle {
@@ -111,6 +116,7 @@
       left: 8px;
     }
 
+    /* CLASES COMPARTIDAS HOME */
     .hero {
       background: #ededed;
       border-radius: 18px;
@@ -141,7 +147,6 @@
       color: #000;
     }
 
-
     .content {
       background: linear-gradient(to right, #141414, #181818);
       color: white;
@@ -164,6 +169,7 @@
       max-width: 840px;
     }
 
+    /* AUTH CARD FIREBASE */
     .auth-card {
       margin-top: 18px;
       background: #f6f6f6;
@@ -172,129 +178,87 @@
       border: 1px solid #d4d4d4;
     }
 
-    .auth-card h3 {
-      margin-bottom: 12px;
-      color: #111;
-      font-size: 22px;
-    }
+    .auth-card h3 { margin-bottom: 12px; color: #111; font-size: 22px; }
+    .auth-card p { color: #333; margin-bottom: 14px; font-size: 14px; }
+    .auth-card input { width: 100%; padding: 12px 14px; margin-bottom: 10px; border: 1px solid #cfcfcf; border-radius: 12px; font-size: 14px; outline: none; }
+    .auth-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    
+    .btn { border: none; border-radius: 12px; padding: 12px 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s ease; }
+    .btn:hover { opacity: 0.92; }
+    .btn-primary { background: #0d8b56; color: white; }
+    .btn-outline { background: white; color: #111; border: 1px solid #c9c9c9; }
+    .btn-google { width: 100%; background: #ffffff; color: #111; border: 1px solid #c9c9c9; margin-bottom: 10px; }
+    .btn-logout { background: #1b1b1b; color: white; width: 100%; margin-top: 10px; }
+    
+    .status-box { margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: #ececec; color: #111; font-size: 14px; line-height: 1.45; }
+    .hidden { display: none !important; }
+    .user-panel { margin-top: 12px; padding: 14px; border-radius: 14px; background: #ffffff; border: 1px solid #d8d8d8; color: #111;}
+    .user-panel strong { display: block; margin-bottom: 8px; }
+    .small-text { font-size: 13px; color: #444; margin-top: 6px; }
 
-    .auth-card p {
-      color: #333;
-      margin-bottom: 14px;
-      font-size: 14px;
-    }
+    /* ESTILOS DE RUTES Y PRODUCTES */
+    .page-box { background: #ededed; border-radius: 18px; padding: 30px 28px; border: 1px solid #cfcfcf; color: #111; }
+    .page-box h1 { font-size: 42px; margin-bottom: 18px; }
+    .page-box p { font-size: 17px; line-height: 1.6; margin-bottom: 18px; }
+    
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .product-card { background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; }
+    .product-card h3 { margin-bottom: 8px; }
+    .product-card .price { font-weight: bold; color: #0d8b56; margin-bottom: 10px; }
 
-    .auth-card input {
-      width: 100%;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      border: 1px solid #cfcfcf;
-      border-radius: 12px;
-      font-size: 14px;
-      outline: none;
-    }
+    .route-card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; border: 1px solid #d8d8d8; }
+    .route-card h3 { margin-bottom: 8px; }
+    .route-card span { display: block; color: #555; margin-bottom: 6px; }
 
-    .auth-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    /* ESTILOS SOBRE NOSALTRES */
+    .hero-nosaltres { background: #ededed; border-radius: 18px; padding: 35px; border: 1px solid #cfcfcf; text-align: center; color: #111;}
+    .hero-nosaltres h1 { font-size: 64px; margin-bottom: 10px; }
+    .hero-nosaltres p { font-size: 18px; color: #444; }
+    
+    .section-about { background: #141414; color: white; padding: 30px; border-radius: 18px; margin-top: 12px; }
+    .section-about h2 { font-size: 28px; margin-bottom: 14px; }
+    .section-about p { line-height: 1.6; color: #e5e5e5; }
+    
+    .grid-about { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+    .card-about { background: #f3f3f3; color: #111; border-radius: 16px; padding: 18px; border: 1px solid #d3d3d3; }
+    .card-about h3 { margin-bottom: 6px; }
+    
+    .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 16px; }
+    .member { background: white; border-radius: 14px; padding: 14px; text-align: center; border: 1px solid #d4d4d4; color:#111;}
+    .member img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 8px; }
+    
+    .cta { background: linear-gradient(135deg, #0f8cff, #06d17c); padding: 26px; border-radius: 18px; text-align: center; margin-top: 12px; color: white; }
+    .cta button { margin-top: 12px; border: none; padding: 12px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; }
 
-    .btn {
-      border: none;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      opacity: 0.92;
-    }
-
-    .btn-primary {
-      background: #0d8b56;
-      color: white;
-    }
-
-    .btn-outline {
-      background: white;
-      color: #111;
-      border: 1px solid #c9c9c9;
-    }
-
-    .btn-google {
-      width: 100%;
-      background: #ffffff;
-      color: #111;
-      border: 1px solid #c9c9c9;
-      margin-bottom: 10px;
-    }
-
-    .btn-logout {
-      background: #1b1b1b;
-      color: white;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .status-box {
-      margin-top: 10px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: #ececec;
-      color: #111;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .user-panel {
-      margin-top: 12px;
-      padding: 14px;
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid #d8d8d8;
-    }
-
-    .user-panel strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .small-text {
-      font-size: 13px;
-      color: #444;
-      margin-top: 6px;
-    }
+    /* UTILIDAD PARA OCULTAR PÁGINAS (SINGLE PAGE APP) */
+    .hidden-page { display: none !important; }
 
     @media (max-width: 700px) {
-      .hero-title {
-        font-size: 48px;
-      }
-
-      .hero-logo {
-        width: 110px;
-      }
-
-      .auth-buttons {
-        grid-template-columns: 1fr;
-      }
-
-      .menu {
-        gap: 14px;
-      }
-
-      .menu a {
-        font-size: 12px;
-      }
+      .hero-title { font-size: 48px; }
+      .hero-logo { width: 110px; }
+      .auth-buttons { grid-template-columns: 1fr; }
+      .menu { gap: 14px; }
+      .menu a { font-size: 12px; }
+      .hero-nosaltres h1 { font-size: 40px; }
     }
+    /* Asegúrate de que .menu tenga position: relative */
+.menu {
+  display: flex;
+  gap: 26px;
+  position: relative; /* ESTO ES NUEVO Y MUY IMPORTANTE */
+}
+
+/* EL ESTILO DE LA BARRITA QUE SE MUEVE */
+#slide-indicator {
+  position: absolute;
+  bottom: -6px; /* Para que quede justo debajo de las letras */
+  left: 0;
+  height: 3px; /* Grosor de la línea */
+  background-color: #06d17c; /* El color verde de Wallty */
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out; /* Esta es la magia que lo hace deslizar */
+  z-index: 0;
+}
   </style>
 </head>
 <body>
@@ -307,265 +271,199 @@
           <img src="wallty.png" alt="Logo Wallty">
         </div>
 
-        <nav class="menu">
-          <a href="#">Home</a>
-          <a href="#">Rutes</a>
-          <a href="#">Productes</a>
-          <a href="#">Sobre nosaltres</a>
-          <a href="#">Contacta'ns</a>
-        </nav>
+        <nav class="menu" id="main-menu">
+  <div id="slide-indicator"></div> 
+
+  <a href="#" onclick="navigateTo('home', this)" class="active">Home</a>
+  <a href="#" onclick="navigateTo('rutes', this)">Rutes</a>
+  <a href="#" onclick="navigateTo('productes', this)">Productes</a>
+  <a href="#" onclick="navigateTo('sobre_nosaltres', this)">Sobre nosaltres</a>
+</nav>
       </div>
 
       <div class="profile-circle"></div>
     </header>
 
-    <section class="hero">
-      <div class="hero-content">
-        <img src="wallty.png" alt="Logo gran Wallty" class="hero-logo">
-        <h1 class="hero-title">Wallty</h1>
+    <div id="pages-container">
+
+      <div id="page-home" class="page-section">
+        <section class="hero">
+          <div class="hero-content">
+            <img src="wallty.png" alt="Logo gran Wallty" class="hero-logo">
+            <h1 class="hero-title">Wallty</h1>
+          </div>
+        </section>
+
+        <section class="content">
+          <h2>BENVINGUTS A WALLTY</h2>
+          <p>
+            Wallty és una aplicació pensada per motivar les persones a caminar, descobrir rutes
+            i aconseguir recompenses. Des d’aquí podràs registrar-te, iniciar sessió i accedir
+            a totes les funcionalitats de la plataforma.
+          </p>
+
+          <div class="auth-card">
+            <h3>Accés / Registre</h3>
+            <p>
+              Pots entrar amb correu i contrasenya o amb Google. Si et registres amb correu,
+              t’enviarem un email de verificació.
+            </p>
+
+            <div id="auth-section">
+              <input type="email" id="email" placeholder="Correu electrònic">
+              <input type="password" id="pass" placeholder="Contrasenya">
+
+              <div class="auth-buttons">
+                <button class="btn btn-primary" id="btnEntrar">Entrar</button>
+                <button class="btn btn-outline" id="btnRegistre">Crear compte</button>
+              </div>
+
+              <button class="btn btn-google" id="btnGoogle">Entrar amb Google</button>
+
+              <div class="status-box" id="statusBox">
+                Encara no has iniciat sessió.
+              </div>
+            </div>
+
+            <div id="verify-section" class="hidden">
+              <div class="status-box">
+                T’hem enviat un correu de verificació. Revisa la safata d’entrada, fes clic a l’enllaç i després prem “Ja he verificat”.
+              </div>
+              <button class="btn btn-primary" id="btnReloadUser" style="margin-top:10px;">Ja he verificat</button>
+              <button class="btn btn-outline" id="btnResendVerification" style="margin-top:10px;">Reenviar correu</button>
+              <button class="btn btn-logout" id="btnLogoutVerify">Tancar sessió</button>
+            </div>
+
+            <div id="app-content" class="hidden">
+              <div class="user-panel">
+                <strong>Usuari autenticat</strong>
+                <div id="user-info">-</div>
+                <div class="small-text" id="provider-info"></div>
+              </div>
+              <button class="btn btn-logout" id="btnLogOut">Tancar sessió</button>
+            </div>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <section class="content">
-      <h2>LOREM IPSUM</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu arcu, cursus et felis at,
-        laoreet egestas sem. Fusce dolor arcu, malesuada ac ligula mattis, auctor tincidunt magna.
-        Praesent consequat pharetra nunc nec porttitor. Curabitur quis purus et massa ultrices
-        ullamcorper sed eget lectus.
-      </p>
+      <div id="page-rutes" class="page-section hidden-page">
+        <section class="page-box">
+          <h1>Rutes</h1>
+          <p>
+            Descobreix camins, recorreguts i espais ideals per caminar. Cada ruta pot ajudar-te
+            a sumar passos, assolir reptes i obtenir recompenses dins de Wallty.
+          </p>
 
-      <div class="auth-card">
-        <h3>Accés / Registre</h3>
-        <p>
-          Pots entrar amb correu i contrasenya o amb Google. Si et registres amb correu,
-          t’enviarem un email de verificació.
-        </p>
-
-        <div id="auth-section">
-          <input type="email" id="email" placeholder="Correu electrònic">
-          <input type="password" id="pass" placeholder="Contrasenya">
-
-          <div class="auth-buttons">
-            <button class="btn btn-primary" id="btnEntrar">Entrar</button>
-            <button class="btn btn-outline" id="btnRegistre">Crear compte</button>
+          <div class="route-card">
+            <h3>Ruta urbana</h3>
+            <span>Dificultat: Baixa</span>
+            <span>Durada: 25 minuts</span>
+            <p>Perfecta per caminar cada dia i sumar punts de manera senzilla.</p>
           </div>
 
-          <button class="btn btn-google" id="btnGoogle">Entrar amb Google</button>
-
-          <div class="status-box" id="statusBox">
-            Encara no has iniciat sessió.
+          <div class="route-card">
+            <h3>Ruta del parc</h3>
+            <span>Dificultat: Mitjana</span>
+            <span>Durada: 40 minuts</span>
+            <p>Una opció més llarga per a usuaris que volen fer més activitat física.</p>
           </div>
-        </div>
 
-        <div id="verify-section" class="hidden">
-          <div class="status-box">
-            T’hem enviat un correu de verificació. Revisa la safata d’entrada, fes clic a l’enllaç i després prem “Ja he verificat”.
+          <div class="route-card">
+            <h3>Ruta saludable</h3>
+            <span>Dificultat: Mitjana</span>
+            <span>Durada: 60 minuts</span>
+            <p>Ideal per completar objectius setmanals i desbloquejar recompenses especials.</p>
           </div>
-          <button class="btn btn-primary" id="btnReloadUser" style="margin-top:10px;">Ja he verificat</button>
-          <button class="btn btn-outline" id="btnResendVerification" style="margin-top:10px;">Reenviar correu</button>
-          <button class="btn btn-logout" id="btnLogoutVerify">Tancar sessió</button>
-        </div>
-
-        <div id="app-content" class="hidden">
-          <div class="user-panel">
-            <strong>Usuari autenticat</strong>
-            <div id="user-info">-</div>
-            <div class="small-text" id="provider-info"></div>
-          </div>
-          <button class="btn btn-logout" id="btnLogOut">Tancar sessió</button>
-        </div>
+        </section>
       </div>
-    </section>
-  </div>
 
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+      <div id="page-productes" class="page-section hidden-page">
+        <section class="page-box">
+          <h1>Productes</h1>
+          <p>
+            Aquí pots consultar els productes i recompenses disponibles a Wallty. Els usuaris
+            poden aconseguir avantatges a mesura que caminen i completen reptes.
+          </p>
+
+          <div class="product-grid">
+            <div class="product-card">
+              <h3>Descompte saludable</h3>
+              <div class="price">100 punts</div>
+              <p>Canvia els teus punts per descomptes en establiments associats.</p>
+            </div>
+
+            <div class="product-card">
+              <h3>Pack esportiu</h3>
+              <div class="price">250 punts</div>
+              <p>Recompensa especial per a usuaris actius que completen rutes setmanals.</p>
+            </div>
+
+            <div class="product-card">
+              <h3>Recompensa premium</h3>
+              <div class="price">500 punts</div>
+              <p>Accedeix a promocions exclusives i experiències especials.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="page-sobre_nosaltres" class="page-section hidden-page">
+        <section class="hero-nosaltres">
+          <h1>Sobre Wallty</h1>
+          <p>La plataforma que connecta natura, rutes i aventura.</p>
+        </section>
+
+        <section class="section-about">
+          <h2>Qui som</h2>
+          <p>Wallty és una plataforma creada per ajudar a descobrir rutes, activitats i experiències a la natura. El nostre objectiu és facilitar que qualsevol persona pugui explorar el territori d’una manera senzilla, segura i divertida.</p>
+          <p style="margin-top:10px;">Creiem en la tecnologia com una eina per apropar les persones a l’exploració, la sostenibilitat i l’aventura.</p>
+        </section>
+
+        <section class="section-about">
+          <h2>Missió i visió</h2>
+          <div class="grid-about">
+            <div class="card-about">
+              <h3>Missió</h3>
+              <p>Fer accessible la descoberta de rutes i experiències naturals a qualsevol persona, utilitzant tecnologia senzilla i intuïtiva.</p>
+            </div>
+            <div class="card-about">
+              <h3>Visió</h3>
+              <p>Convertir-nos en una de les plataformes de referència per explorar rutes i activitats outdoor a Europa.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-about">
+          <h2>Els nostres valors</h2>
+          <div class="grid-about">
+            <div class="card-about"><h3>Sostenibilitat</h3><p>Promovem el respecte pel medi ambient i la natura.</p></div>
+            <div class="card-about"><h3>Comunitat</h3><p>Creiem en compartir rutes i experiències entre persones.</p></div>
+            <div class="card-about"><h3>Innovació</h3><p>Utilitzem tecnologia per millorar l'experiència outdoor.</p></div>
+            <div class="card-about"><h3>Aventura</h3><p>Explorar nous llocs és part de la nostra identitat.</p></div>
+          </div>
+        </section>
+
+        <section class="section-about">
+          <h2>L'equip</h2>
+          <div class="team">
+            <div class="member"><img src="https://i.pravatar.cc/100?img=1"><strong>Marc</strong><p>CEO</p></div>
+            <div class="member"><img src="https://i.pravatar.cc/100?img=2"><strong>Laia</strong><p>UX Designer</p></div>
+            <div class="member"><img src="https://i.pravatar.cc/100?img=3"><strong>Pol</strong><p>Developer</p></div>
+            <div class="member"><img src="https://i.pravatar.cc/100?img=4"><strong>Clara</strong><p>Marketing</p></div>
+          </div>
+        </section>
+
+        <section class="cta">
+          <h2>Vols formar part de la comunitat?</h2>
+          <p>Descobreix rutes i comparteix les teves aventures amb Wallty.</p>
+          <button onclick="navigateTo('home', document.querySelector('.menu a.active'))">Comença ara</button>
+        </section>
+      </div>
+
+    </div> </div> <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="app.js"></script>
 
-  <script>
-
-    const firebaseConfig = {
-      apiKey: "TU_API_KEY",
-      authDomain: "TU_PROYECTO.firebaseapp.com",
-      projectId: "TU_PROJECT_ID",
-      storageBucket: "TU_PROYECTO.appspot.com",
-      messagingSenderId: "TU_MESSAGING_SENDER_ID",
-      appId: "TU_APP_ID"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-
-    const authSection = document.getElementById("auth-section");
-    const verifySection = document.getElementById("verify-section");
-    const appContent = document.getElementById("app-content");
-    const statusBox = document.getElementById("statusBox");
-    const userInfo = document.getElementById("user-info");
-    const providerInfo = document.getElementById("provider-info");
-
-    const emailInput = document.getElementById("email");
-    const passInput = document.getElementById("pass");
-
-    const btnEntrar = document.getElementById("btnEntrar");
-    const btnRegistre = document.getElementById("btnRegistre");
-    const btnGoogle = document.getElementById("btnGoogle");
-    const btnReloadUser = document.getElementById("btnReloadUser");
-    const btnResendVerification = document.getElementById("btnResendVerification");
-    const btnLogoutVerify = document.getElementById("btnLogoutVerify");
-    const btnLogOut = document.getElementById("btnLogOut");
-
-
-    function showLoggedOut() {
-      authSection.classList.remove("hidden");
-      verifySection.classList.add("hidden");
-      appContent.classList.add("hidden");
-      statusBox.textContent = "Encara no has iniciat sessió.";
-    }
-
-    function showVerifyPending(user) {
-      authSection.classList.add("hidden");
-      verifySection.classList.remove("hidden");
-      appContent.classList.add("hidden");
-      userInfo.textContent = user.email || "Sense correu";
-      providerInfo.textContent = "Compte creat amb correu i contrasenya. Falta verificar el correu.";
-    }
-
-    function showLoggedIn(user, providerName) {
-      authSection.classList.add("hidden");
-      verifySection.classList.add("hidden");
-      appContent.classList.remove("hidden");
-      userInfo.textContent = user.email || "Usuari sense correu";
-      providerInfo.textContent = "Mètode d'accés: " + providerName;
-    }
-
-    function getMainProvider(user) {
-      if (!user || !user.providerData || user.providerData.length === 0) {
-        return "desconegut";
-      }
-
-      const ids = user.providerData.map(p => p.providerId);
-
-      if (ids.includes("google.com")) return "Google";
-      if (ids.includes("password")) return "Correu i contrasenya";
-      return ids[0];
-    }
-
-    btnRegistre.onclick = async () => {
-      const email = emailInput.value.trim();
-      const pass = passInput.value;
-
-      if (!email || !pass) {
-        alert("Escriu el correu i la contrasenya.");
-        return;
-      }
-
-      try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, pass);
-        await userCredential.user.sendEmailVerification();
-        alert("Compte creat. T’hem enviat un correu de verificació.");
-        showVerifyPending(userCredential.user);
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    btnEntrar.onclick = async () => {
-      const email = emailInput.value.trim();
-      const pass = passInput.value;
-
-      if (!email || !pass) {
-        alert("Escriu el correu i la contrasenya.");
-        return;
-      }
-
-      try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, pass);
-        await userCredential.user.reload();
-
-        if (userCredential.user.emailVerified) {
-          showLoggedIn(userCredential.user, "Correu i contrasenya");
-        } else {
-          showVerifyPending(userCredential.user);
-        }
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    btnGoogle.onclick = async () => {
-      try {
-        const result = await auth.signInWithPopup(googleProvider);
-        showLoggedIn(result.user, "Google");
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    btnReloadUser.onclick = async () => {
-      const user = auth.currentUser;
-      if (!user) return;
-
-      try {
-        await user.reload();
-        const updatedUser = auth.currentUser;
-
-        if (updatedUser.emailVerified) {
-          showLoggedIn(updatedUser, "Correu i contrasenya");
-        } else {
-          alert("Encara no consta com a verificat. Torna-ho a provar després de confirmar l’email.");
-        }
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    btnResendVerification.onclick = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        alert("No hi ha cap usuari autenticat.");
-        return;
-      }
-
-      try {
-        await user.sendEmailVerification();
-        alert("Correu de verificació reenviat.");
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-
-    btnLogoutVerify.onclick = () => auth.signOut();
-    btnLogOut.onclick = () => auth.signOut();
-
-    auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        showLoggedOut();
-        return;
-      }
-
-      try {
-        await user.reload();
-      } catch (e) {
-        console.log(e);
-      }
-
-      const currentUser = auth.currentUser;
-      const providerName = getMainProvider(currentUser);
-      const providerIds = (currentUser.providerData || []).map(p => p.providerId);
-      const isGoogleUser = providerIds.includes("google.com");
-
-      if (isGoogleUser) {
-        showLoggedIn(currentUser, providerName);
-        return;
-      }
-
-      if (currentUser.emailVerified) {
-        showLoggedIn(currentUser, providerName);
-      } else {
-        showVerifyPending(currentUser);
-      }
-    });
-  </script>
+    
 </body>
 </html>
