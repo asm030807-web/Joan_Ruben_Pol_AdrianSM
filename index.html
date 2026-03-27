@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
     body {
@@ -211,9 +210,21 @@
     .page-box h1 { font-size: 42px; margin-bottom: 18px; }
     .page-box p { font-size: 17px; line-height: 1.6; margin-bottom: 18px; }
     
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    /* RUTES */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 20px; }
+    .route-card { background: #fff; border-radius: 14px; padding: 0; border: 1px solid #d8d8d8; overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
+    .route-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .route-img-box { width: 100%; height: 180px; overflow: hidden; position: relative; }
+    .route-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .route-points { position: absolute; top: 12px; right: 12px; background: #0d8b56; color: white; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+    .route-info { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
+    .route-habitat { display: inline-block; background: #f0f0f0; padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; color: #333; width: fit-content; margin-bottom: 10px;}
+    .route-card h3 { font-size: 20px; margin-bottom: 12px; color: #111; }
+    .route-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; color: #555; margin-bottom: 18px; }
+    .more-routes-msg { text-align: center; padding: 25px; margin-top: 25px; background: #e6e6e6; border-radius: 14px; color: #444; font-weight: 600; border: 2px dashed #bbb; font-size: 16px;}
 
-    /* ESTILS NOUS PER A LES TARGETES DE PRODUCTE */
+    /* PRODUCTES */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
     .product-card { background: #fff; border-radius: 14px; padding: 0; border: 1px solid #d8d8d8; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; }
     .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     .product-img-box { width: 100%; height: 160px; overflow: hidden; }
@@ -223,28 +234,32 @@
     .product-card .price { font-weight: bold; color: #0d8b56; margin-top: auto; font-size: 16px; }
     .product-card .tag { font-size: 11px; color: white; background: #111; padding: 4px 8px; border-radius: 10px; display: inline-block; margin-bottom: 8px; font-weight: 600; width: max-content;}
 
-    .route-card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; border: 1px solid #d8d8d8; }
-    .route-card h3 { margin-bottom: 8px; }
-    .route-card span { display: block; color: #555; margin-bottom: 6px; }
-
+    /* SOBRE NOSALTRES */
     .hero-nosaltres { background: #ededed; border-radius: 18px; padding: 35px; border: 1px solid #cfcfcf; text-align: center; color: #111;}
     .hero-nosaltres h1 { font-size: 64px; margin-bottom: 10px; }
     .hero-nosaltres p { font-size: 18px; color: #444; }
-    
     .section-about { background: #141414; color: white; padding: 30px; border-radius: 18px; margin-top: 12px; }
     .section-about h2 { font-size: 28px; margin-bottom: 14px; }
     .section-about p { line-height: 1.6; color: #e5e5e5; }
-    
     .grid-about { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
     .card-about { background: #f3f3f3; color: #111; border-radius: 16px; padding: 18px; border: 1px solid #d3d3d3; }
     .card-about h3 { margin-bottom: 6px; }
-    
     .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 16px; }
     .member { background: white; border-radius: 14px; padding: 14px; text-align: center; border: 1px solid #d4d4d4; color:#111;}
     .member img { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 8px; }
-    
     .cta { background: linear-gradient(135deg, #0f8cff, #06d17c); padding: 26px; border-radius: 18px; text-align: center; margin-top: 12px; color: white; }
     .cta button { margin-top: 12px; border: none; padding: 12px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+    /* ESTILS NOUS PER A CONTACTE */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+    .contact-card { background: #fff; border-radius: 14px; padding: 24px; border: 1px solid #d8d8d8; color: #111; }
+    .contact-card h3 { color: #0d8b56; margin-bottom: 15px; font-size: 20px; display: flex; align-items: center; gap: 8px; }
+    .contact-card p { font-size: 15px; line-height: 1.6; margin-bottom: 10px; color: #444; }
+    .contact-form input, .contact-form textarea, .contact-form select { width: 100%; padding: 12px 14px; margin-bottom: 12px; border: 1px solid #cfcfcf; border-radius: 12px; font-size: 14px; outline: none; font-family: 'Poppins', sans-serif; resize: vertical; }
+    .review-box { background: #f9f9f9; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #eee; }
+    .review-box .stars { color: #f39c12; margin-bottom: 5px; font-size: 18px; }
+    .review-box strong { display: block; font-size: 14px; margin-bottom: 4px; }
+    .review-box p { font-size: 13px; color: #555; margin-bottom: 0; }
 
     /* MODAL DELS PRODUCTES */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -289,6 +304,7 @@
           <a href="#" onclick="navigateTo('rutes', this)">Rutes</a>
           <a href="#" onclick="navigateTo('productes', this)">Productes</a>
           <a href="#" onclick="navigateTo('sobre_nosaltres', this)">Sobre nosaltres</a>
+          <a href="#" onclick="navigateTo('contacte', this)">Contacte</a>
         </nav>
       </div>
 
@@ -360,31 +376,81 @@
 
       <div id="page-rutes" class="page-section hidden-page">
         <section class="page-box">
-          <h1>Rutes</h1>
+          <h1>Rutes Wallty</h1>
           <p>
-            Descobreix camins, recorreguts i espais ideals per caminar. Cada ruta pot ajudar-te
-            a sumar passos, assolir reptes i obtenir recompenses dins de Wallty.
+            Descobreix camins, recorreguts i espais ideals per caminar. Cada ruta completada et farà guanyar WalltyCoins que podràs gastar a la botiga!
           </p>
 
-          <div class="route-card">
-            <h3>Ruta urbana</h3>
-            <span>Dificultat: Baixa</span>
-            <span>Durada: 25 minuts</span>
-            <p>Perfecta per caminar cada dia i sumar punts de manera senzilla.</p>
+          <div class="route-grid">
+            
+            <div class="route-card">
+              <div class="route-img-box">
+                <img src="https://images.unsplash.com/photo-1626244105269-80b6ea3ba8dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Congost de Mont-rebei">
+                <div class="route-points">+450 PTS</div>
+              </div>
+              <div class="route-info">
+                <span class="route-habitat">⛰️ Congost / Riu</span>
+                <h3>Congost de Mont-rebei</h3>
+                <div class="route-details">
+                  <div>📏 <strong>Distància:</strong> 10 km</div>
+                  <div>⏱️ <strong>Durada:</strong> 4h 00m</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
+              </div>
+            </div>
+
+            <div class="route-card">
+              <div class="route-img-box">
+                <img src="https://images.unsplash.com/photo-1533903120613-2d12f6a7d084?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Camí de Ronda">
+                <div class="route-points">+300 PTS</div>
+              </div>
+              <div class="route-info">
+                <span class="route-habitat">🌊 Costa / Platja</span>
+                <h3>Camí de Ronda (S'Agaró)</h3>
+                <div class="route-details">
+                  <div>📏 <strong>Distància:</strong> 6.5 km</div>
+                  <div>⏱️ <strong>Durada:</strong> 2h 15m</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
+              </div>
+            </div>
+
+            <div class="route-card">
+              <div class="route-img-box">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pedraforca">
+                <div class="route-points">+650 PTS</div>
+              </div>
+              <div class="route-info">
+                <span class="route-habitat">🏔️ Alta Muntanya</span>
+                <h3>Ascensió al Pedraforca</h3>
+                <div class="route-details">
+                  <div>📏 <strong>Distància:</strong> 6.0 km</div>
+                  <div>⏱️ <strong>Durada:</strong> 5h 30m</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
+              </div>
+            </div>
+
+            <div class="route-card">
+              <div class="route-img-box">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parc de Collserola">
+                <div class="route-points">+150 PTS</div>
+              </div>
+              <div class="route-info">
+                <span class="route-habitat">🌲 Bosc / Urbà</span>
+                <h3>Carretera de les Aigües</h3>
+                <div class="route-details">
+                  <div>📏 <strong>Distància:</strong> 9.0 km</div>
+                  <div>⏱️ <strong>Durada:</strong> 2h 00m</div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
+              </div>
+            </div>
+
           </div>
 
-          <div class="route-card">
-            <h3>Ruta del parc</h3>
-            <span>Dificultat: Mitjana</span>
-            <span>Durada: 40 minuts</span>
-            <p>Una opció més llarga per a usuaris que volen fer més activitat física.</p>
-          </div>
-
-          <div class="route-card">
-            <h3>Ruta saludable</h3>
-            <span>Dificultat: Mitjana</span>
-            <span>Durada: 60 minuts</span>
-            <p>Ideal per completar objectius setmanals i desbloquejar recompenses especials.</p>
+          <div class="more-routes-msg">
+            🚧 Estem preparant i cartografiant moltes més rutes! A continuació més pròximament...
           </div>
         </section>
       </div>
@@ -455,6 +521,75 @@
         </section>
       </div>
 
+      <div id="page-contacte" class="page-section hidden-page">
+        <section class="page-box">
+          <h1>Contacte i Comunitat</h1>
+          <p>Ens encanta escoltar la nostra comunitat d'exploradors. Contacta amb nosaltres, deixa la teva ressenya o ajuda'ns a millorar Wallty.</p>
+
+          <div class="contact-grid">
+            
+            <div>
+              <div class="contact-card" style="margin-bottom: 20px;">
+                <h3>🏢 Dades de Wallty</h3>
+                <p><strong>📍 Direcció:</strong> TecnoCampus Mataró, Av. Ernest Lluch, 32</p>
+                <p><strong>✉️ Correu:</strong> hola@wallty.app</p>
+                <p><strong>📞 Telèfon:</strong> +34 900 123 456</p>
+                <p><strong>📱 Xarxes:</strong> @WalltyApp a Instagram i Twitter</p>
+              </div>
+
+              <div class="contact-card contact-form">
+                <h3>💡 Aporta Millores</h3>
+                <p style="font-size: 14px; margin-bottom: 15px;">Tens alguna idea per fer Wallty millor? Ens falta alguna ruta? Explica'ns-ho!</p>
+                <input type="text" placeholder="El teu nom o correu (opcional)">
+                <textarea rows="4" placeholder="Escriu aquí la teva idea o suggeriment..."></textarea>
+                <button class="btn btn-primary" style="width: 100%;" onclick="alert('Gràcies per la teva aportació! Ho revisarem aviat.')">Enviar suggeriment</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-card">
+                <h3>⭐ Ressenyes dels Usuaris</h3>
+                <p style="font-size: 14px; margin-bottom: 15px;">Mira què diuen els altres sobre l'experiència Wallty.</p>
+                
+                <div class="review-box">
+                  <div class="stars">★★★★★</div>
+                  <strong>Laura M.</strong>
+                  <p>"Des que utilitzo Wallty surto a caminar molt més sovint. Poder bescanviar els punts per material d'excursió és una idea genial!"</p>
+                </div>
+
+                <div class="review-box">
+                  <div class="stars">★★★★☆</div>
+                  <strong>Marc P.</strong>
+                  <p>"L'app està molt bé, les rutes estan ben explicades. M'agradaria que afegíssiu més rutes per la zona de Girona."</p>
+                </div>
+
+                <div class="review-box">
+                  <div class="stars">★★★★★</div>
+                  <strong>Júlia R.</strong>
+                  <p>"Ahir vaig fer la ruta del Mont-rebei i tot perfecte. Els WalltyCoins es sumen súper ràpid."</p>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+                <div class="contact-form">
+                  <h4 style="margin-bottom: 10px; color: #111;">Deixa la teva ressenya</h4>
+                  <select>
+                    <option>5 Estrelles - Excel·lent</option>
+                    <option>4 Estrelles - Molt bé</option>
+                    <option>3 Estrelles - Bé</option>
+                    <option>2 Estrelles - Millorable</option>
+                    <option>1 Estrella - Dolent</option>
+                  </select>
+                  <textarea rows="3" placeholder="Com ha estat la teva experiència?"></textarea>
+                  <button class="btn btn-outline" style="width: 100%;" onclick="alert('La teva ressenya s\'ha enviat i està pendent de moderació.')">Publicar ressenya</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
       <div id="page-perfil" class="page-section hidden-page">
         <section class="page-box">
           <h1>El teu Perfil</h1>
@@ -484,8 +619,8 @@
         </section>
       </div>
 
-    </div>
-
+    </div> 
+    
     <div id="modal-overlay" class="modal-overlay">
       <div class="modal-box">
         <span class="modal-close" onclick="tancarModalProducte()">&times;</span>
@@ -502,98 +637,10 @@
       </div>
     </div>
 
-  </div>
-
+  </div> 
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="app.js"></script>
-
-  <script>
-    let puntsTotals = 1200; // Punts de regal per provar les compres
-    let producteSeleccionat = null;
-
-    const llistaProductes = [
-      { id: 1, nom: "Samarreta Tècnica Eco", categoria: "ROBA", preuPts: 350, preuEuros: null, preuDescompte: null, desc: "Samarreta transpirable fabricada 100% amb ampolles reciclades. Lliguera i ideal per rutes de llarga distància.", img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 2, nom: "Carmanyola de Bambú", categoria: "LLAR", preuPts: 500, preuEuros: "15,00 €", preuDescompte: "2,00 € + 500 PTS", desc: "Tapa hermètica de bambú natural i base de vidre resistent. La millor manera de portar el menjar sense residus.", img: "https://images.unsplash.com/photo-1586034679951-b062537f5979?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 3, nom: "Motxilla Senderisme 20L", categoria: "AVENTURA", preuPts: 850, preuEuros: null, preuDescompte: null, desc: "Motxilla compacta amb ajust de pit i esquena encoixinada transpirable. Perfecta per a rutes d'un dia.", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 4, nom: "Ampolla Tèrmica Inox", categoria: "AVENTURA", preuPts: 300, preuEuros: "22,00 €", preuDescompte: "5,00 € + 300 PTS", desc: "Manté l'aigua glaçada 24h o el teu cafè calent 12h. Lliure de tòxics i BPA.", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 5, nom: "Gorra Wallty Official", categoria: "ROBA", preuPts: 200, preuEuros: null, preuDescompte: null, desc: "Protegeix-te del sol amb la gorra oficial de la comunitat Wallty. Talla única ajustable.", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 6, nom: "Mitjons Tèrmics Muntanya", categoria: "ROBA", preuPts: 150, preuEuros: null, preuDescompte: null, desc: "Mitjons de llana merina anti-butllofes per a les teves rutes d'hivern. Mantingues els peus secs i calents.", img: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 7, nom: "Bastons de Trekking Plegables", categoria: "AVENTURA", preuPts: 1200, preuEuros: "45,00 €", preuDescompte: "10,00 € + 1200 PTS", desc: "Bastons d'alumini lleuger, completament plegables per guardar a la motxilla. Redueixen l'impacte als genolls.", img: "https://images.unsplash.com/photo-1512255745199-5f2122687e83?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-      { id: 8, nom: "Descompte 10% Botiga Eco", categoria: "DIGITAL", preuPts: 100, preuEuros: null, preuDescompte: null, desc: "Val de descompte del 10% vàlid per a totes les compres a les nostres botigues associades d'alimentació ecològica.", img: "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
-    ];
-
-    function renderitzarProductes() {
-        const contenidor = document.getElementById("productes-grid-html");
-        if (!contenidor) return;
-        contenidor.innerHTML = ""; 
-        llistaProductes.forEach(producte => {
-            const textPreu = producte.preuDescompte ? producte.preuDescompte : `${producte.preuPts} PTS`;
-            const cardHTML = `
-                <div class="product-card" onclick="obrirModalProducte(${producte.id})">
-                  <div class="product-img-box"><img src="${producte.img}" alt="${producte.nom}"></div>
-                  <div class="product-info">
-                    <span class="tag">${producte.categoria}</span>
-                    <h3>${producte.nom}</h3>
-                    <div class="price">${textPreu}</div>
-                  </div>
-                </div>
-            `;
-            contenidor.innerHTML += cardHTML;
-        });
-    }
-
-    function obrirModalProducte(idProducte) {
-      producteSeleccionat = llistaProductes.find(p => p.id === idProducte);
-      if (!producteSeleccionat) return;
-
-      document.getElementById('modal-img').src = producteSeleccionat.img;
-      document.getElementById('modal-title').textContent = producteSeleccionat.nom;
-      document.getElementById('modal-category').textContent = producteSeleccionat.categoria;
-      document.getElementById('modal-desc').textContent = producteSeleccionat.desc;
-
-      const priceBox = document.getElementById('modal-price-box');
-      if (producteSeleccionat.preuDescompte) {
-          priceBox.innerHTML = `
-              <div class="modal-price-main">${producteSeleccionat.preuDescompte}</div>
-              <div class="modal-price-sub">Preu original: <span style="text-decoration: line-through;">${producteSeleccionat.preuEuros}</span></div>
-          `;
-      } else {
-          priceBox.innerHTML = `<div class="modal-price-main">${producteSeleccionat.preuPts} PTS</div>`;
-      }
-
-      document.getElementById('modal-overlay').classList.add('active');
-    }
-
-    function tancarModalProducte() {
-      document.getElementById('modal-overlay').classList.remove('active');
-      producteSeleccionat = null;
-    }
-
-    function actualitzarPerfilUI() {
-        const textPunts = document.getElementById("perfil-punts");
-        if(textPunts) textPunts.textContent = puntsTotals;
-    }
-
-    function canjejarProducteActual() {
-        if (!producteSeleccionat) return;
-
-        if (puntsTotals >= producteSeleccionat.preuPts) {
-            puntsTotals -= producteSeleccionat.preuPts;
-            actualitzarPerfilUI();
-            alert(`¡Enhorabona! 🎉 Has canjejat ${producteSeleccionat.preuPts} WalltyCoins per: ${producteSeleccionat.nom}.`);
-            tancarModalProducte();
-        } else {
-            const puntsFaltants = producteSeleccionat.preuPts - puntsTotals;
-            alert(`❌ Ho sentim. No tens WalltyCoins suficients. Et falten ${puntsFaltants} WalltyCoins per poder comprar això.`);
-        }
-    }
-
-    // Quan es carrega la pàgina, es posen els productes i s'actualitza el text de punts del perfil
-    window.addEventListener('load', () => {
-      renderitzarProductes();
-      actualitzarPerfilUI();
-    });
-  </script>
+    
 </body>
 </html>
