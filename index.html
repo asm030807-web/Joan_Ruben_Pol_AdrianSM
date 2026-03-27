@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wallty - App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -61,7 +63,7 @@
     }
 
     .logo-box img {
-      width: 30px;
+      width: 100px;
       height: 30px;
       object-fit: contain;
     }
@@ -69,7 +71,7 @@
     .menu {
       display: flex;
       gap: 26px;
-      position: relative; /* ESTO ES NUEVO Y MUY IMPORTANTE */
+      position: relative; 
     }
 
     .menu a {
@@ -127,7 +129,6 @@
       left: 8px;
     }
 
-    /* CLASES COMPARTIDAS HOME */
     .hero {
       background: #ededed;
       border-radius: 18px;
@@ -146,7 +147,7 @@
     }
 
     .hero-logo {
-      width: 170px;
+      width: 500px;
       height: auto;
       object-fit: contain;
     }
@@ -180,7 +181,6 @@
       max-width: 840px;
     }
 
-    /* AUTH CARD FIREBASE */
     .auth-card {
       margin-top: 18px;
       background: #f6f6f6;
@@ -207,21 +207,26 @@
     .user-panel strong { display: block; margin-bottom: 8px; }
     .small-text { font-size: 13px; color: #444; margin-top: 6px; }
 
-    /* ESTILOS DE RUTES Y PRODUCTES */
     .page-box { background: #ededed; border-radius: 18px; padding: 30px 28px; border: 1px solid #cfcfcf; color: #111; }
     .page-box h1 { font-size: 42px; margin-bottom: 18px; }
     .page-box p { font-size: 17px; line-height: 1.6; margin-bottom: 18px; }
     
     .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .product-card { background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; }
-    .product-card h3 { margin-bottom: 8px; }
-    .product-card .price { font-weight: bold; color: #0d8b56; margin-bottom: 10px; }
+
+    /* ESTILS NOUS PER A LES TARGETES DE PRODUCTE */
+    .product-card { background: #fff; border-radius: 14px; padding: 0; border: 1px solid #d8d8d8; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .product-img-box { width: 100%; height: 160px; overflow: hidden; }
+    .product-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .product-info { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
+    .product-card h3 { font-size: 18px; margin-bottom: 8px; color: #111; }
+    .product-card .price { font-weight: bold; color: #0d8b56; margin-top: auto; font-size: 16px; }
+    .product-card .tag { font-size: 11px; color: white; background: #111; padding: 4px 8px; border-radius: 10px; display: inline-block; margin-bottom: 8px; font-weight: 600; width: max-content;}
 
     .route-card { background: #fff; border-radius: 14px; padding: 18px; margin-bottom: 14px; border: 1px solid #d8d8d8; }
     .route-card h3 { margin-bottom: 8px; }
     .route-card span { display: block; color: #555; margin-bottom: 6px; }
 
-    /* ESTILOS SOBRE NOSALTRES */
     .hero-nosaltres { background: #ededed; border-radius: 18px; padding: 35px; border: 1px solid #cfcfcf; text-align: center; color: #111;}
     .hero-nosaltres h1 { font-size: 64px; margin-bottom: 10px; }
     .hero-nosaltres p { font-size: 18px; color: #444; }
@@ -241,7 +246,21 @@
     .cta { background: linear-gradient(135deg, #0f8cff, #06d17c); padding: 26px; border-radius: 18px; text-align: center; margin-top: 12px; color: white; }
     .cta button { margin-top: 12px; border: none; padding: 12px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; }
 
-    /* UTILIDAD PARA OCULTAR PÁGINAS (SINGLE PAGE APP) */
+    /* MODAL DELS PRODUCTES */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-box { background: #fff; border-radius: 20px; width: 90%; max-width: 550px; padding: 30px; position: relative; transform: translateY(20px); transition: transform 0.3s ease; color: #111; max-height: 90vh; overflow-y: auto; }
+    .modal-overlay.active .modal-box { transform: translateY(0); }
+    .modal-close { position: absolute; top: 16px; right: 24px; font-size: 32px; cursor: pointer; color: #888; line-height: 1; transition: 0.2s; }
+    .modal-close:hover { color: #111; }
+    .modal-img-large { width: 100%; height: 280px; object-fit: cover; border-radius: 14px; margin-bottom: 20px; background: #eee; }
+    .modal-title { font-size: 28px; margin-bottom: 8px; line-height: 1.2;}
+    .modal-desc { font-size: 15px; color: #555; line-height: 1.6; margin-bottom: 24px; }
+    .modal-price-box { background: #f4fcf7; padding: 20px; border-radius: 14px; border: 2px dashed #0d8b56; margin-bottom: 24px; text-align: center; }
+    .modal-price-main { font-size: 32px; font-weight: 800; color: #0d8b56; line-height: 1;}
+    .modal-price-sub { font-size: 15px; color: #777; margin-top: 8px; }
+    .modal-price-sub span { text-decoration: line-through; color: #999;}
+
     .hidden-page { display: none !important; }
 
     @media (max-width: 700px) {
@@ -261,7 +280,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <div class="logo-box">
-          <img src="wallty.png" alt="Logo Wallty">
+          <img src="Wallty(2)b.png" alt="Logo Wallty">
         </div>
 
         <nav class="menu" id="main-menu">
@@ -273,7 +292,9 @@
         </nav>
       </div>
 
-      <div class="profile-circle" onclick="navigateTo('perfil', null)" style="cursor: pointer; overflow: hidden;" title="El meu perfil"></div>
+      <div class="profile-circle" onclick="navigateTo('perfil', null)" style="cursor: pointer; overflow: hidden;" title="El meu perfil">
+        <img src="profile_icon.png" style="width: 100%; height: 100%; object-fit: cover;" alt="Icono de perfil">
+      </div>
     </header>
 
     <div id="pages-container">
@@ -281,8 +302,7 @@
       <div id="page-home" class="page-section">
         <section class="hero">
           <div class="hero-content">
-            <img src="wallty.png" alt="Logo gran Wallty" class="hero-logo">
-            <h1 class="hero-title">Wallty</h1>
+            <img src="C:\Users\User\Documents\Estudios\Wallty\Wallty(2)b.png" alt="Logo gran Wallty" class="hero-logo">
           </div>
         </section>
 
@@ -371,34 +391,16 @@
 
       <div id="page-productes" class="page-section hidden-page">
         <section class="page-box">
-          <h1>Productes</h1>
+          <h1>La Botiga Wallty</h1>
           <p>
-            Aquí pots consultar els productes i recompenses disponibles a Wallty. Els usuaris
-            poden aconseguir avantatges a mesura que caminen i completen reptes.
+            Canvia els teus WalltyCoins per equipament d'aventura, roba ecològica o productes per a la llar. Fes clic a qualsevol producte per veure'n els detalls i els descomptes.
           </p>
 
-          <div class="product-grid">
-            <div class="product-card">
-              <h3>Descompte saludable</h3>
-              <div class="price">100 punts</div>
-              <p>Canvia els teus punts per descomptes en establiments associats.</p>
+          <div class="product-grid" id="productes-grid-html">
             </div>
-
-            <div class="product-card">
-              <h3>Pack esportiu</h3>
-              <div class="price">250 punts</div>
-              <p>Recompensa especial per a usuaris actius que completen rutes setmanals.</p>
-            </div>
-
-            <div class="product-card">
-              <h3>Recompensa premium</h3>
-              <div class="price">500 punts</div>
-              <p>Accedeix a promocions exclusives i experiències especials.</p>
-            </div>
-          </div>
         </section>
       </div>
-
+      
       <div id="page-sobre_nosaltres" class="page-section hidden-page">
         <section class="hero-nosaltres">
           <h1>Sobre Wallty</h1>
@@ -469,7 +471,7 @@
             <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; text-align: center; display: flex; flex-direction: column; justify-content: center; color: #111;">
               <h3>Punts Acumulats</h3>
               <div style="font-size: 64px; font-weight: bold; color: #0d8b56;" id="perfil-punts">0</div>
-              <p style="color: #666; font-weight: bold;">EcoPoints</p>
+              <p style="color: #666; font-weight: bold;">WalltyCoins</p>
             </div>
           </div>
 
@@ -483,11 +485,115 @@
       </div>
 
     </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+      <div class="modal-box">
+        <span class="modal-close" onclick="tancarModalProducte()">&times;</span>
+        <img id="modal-img" class="modal-img-large" src="" alt="Foto producte">
+        <span id="modal-category" class="tag" style="font-size: 11px; color: white; background: #111; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 8px; font-weight: 600;">CATEGORIA</span>
+        <h2 id="modal-title" class="modal-title">Nom del producte</h2>
+        <p id="modal-desc" class="modal-desc">Descripció del producte...</p>
+        
+        <div id="modal-price-box" class="modal-price-box"></div>
+
+        <button class="btn btn-primary" style="width: 100%; font-size: 16px; padding: 16px;" onclick="canjejarProducteActual()">
+          Canjejar Ara
+        </button>
+      </div>
+    </div>
+
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="app.js"></script>
-    
+
+  <script>
+    let puntsTotals = 1200; // Punts de regal per provar les compres
+    let producteSeleccionat = null;
+
+    const llistaProductes = [
+      { id: 1, nom: "Samarreta Tècnica Eco", categoria: "ROBA", preuPts: 350, preuEuros: null, preuDescompte: null, desc: "Samarreta transpirable fabricada 100% amb ampolles reciclades. Lliguera i ideal per rutes de llarga distància.", img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 2, nom: "Carmanyola de Bambú", categoria: "LLAR", preuPts: 500, preuEuros: "15,00 €", preuDescompte: "2,00 € + 500 PTS", desc: "Tapa hermètica de bambú natural i base de vidre resistent. La millor manera de portar el menjar sense residus.", img: "https://images.unsplash.com/photo-1586034679951-b062537f5979?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 3, nom: "Motxilla Senderisme 20L", categoria: "AVENTURA", preuPts: 850, preuEuros: null, preuDescompte: null, desc: "Motxilla compacta amb ajust de pit i esquena encoixinada transpirable. Perfecta per a rutes d'un dia.", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 4, nom: "Ampolla Tèrmica Inox", categoria: "AVENTURA", preuPts: 300, preuEuros: "22,00 €", preuDescompte: "5,00 € + 300 PTS", desc: "Manté l'aigua glaçada 24h o el teu cafè calent 12h. Lliure de tòxics i BPA.", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 5, nom: "Gorra Wallty Official", categoria: "ROBA", preuPts: 200, preuEuros: null, preuDescompte: null, desc: "Protegeix-te del sol amb la gorra oficial de la comunitat Wallty. Talla única ajustable.", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 6, nom: "Mitjons Tèrmics Muntanya", categoria: "ROBA", preuPts: 150, preuEuros: null, preuDescompte: null, desc: "Mitjons de llana merina anti-butllofes per a les teves rutes d'hivern. Mantingues els peus secs i calents.", img: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 7, nom: "Bastons de Trekking Plegables", categoria: "AVENTURA", preuPts: 1200, preuEuros: "45,00 €", preuDescompte: "10,00 € + 1200 PTS", desc: "Bastons d'alumini lleuger, completament plegables per guardar a la motxilla. Redueixen l'impacte als genolls.", img: "https://images.unsplash.com/photo-1512255745199-5f2122687e83?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+      { id: 8, nom: "Descompte 10% Botiga Eco", categoria: "DIGITAL", preuPts: 100, preuEuros: null, preuDescompte: null, desc: "Val de descompte del 10% vàlid per a totes les compres a les nostres botigues associades d'alimentació ecològica.", img: "https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+    ];
+
+    function renderitzarProductes() {
+        const contenidor = document.getElementById("productes-grid-html");
+        if (!contenidor) return;
+        contenidor.innerHTML = ""; 
+        llistaProductes.forEach(producte => {
+            const textPreu = producte.preuDescompte ? producte.preuDescompte : `${producte.preuPts} PTS`;
+            const cardHTML = `
+                <div class="product-card" onclick="obrirModalProducte(${producte.id})">
+                  <div class="product-img-box"><img src="${producte.img}" alt="${producte.nom}"></div>
+                  <div class="product-info">
+                    <span class="tag">${producte.categoria}</span>
+                    <h3>${producte.nom}</h3>
+                    <div class="price">${textPreu}</div>
+                  </div>
+                </div>
+            `;
+            contenidor.innerHTML += cardHTML;
+        });
+    }
+
+    function obrirModalProducte(idProducte) {
+      producteSeleccionat = llistaProductes.find(p => p.id === idProducte);
+      if (!producteSeleccionat) return;
+
+      document.getElementById('modal-img').src = producteSeleccionat.img;
+      document.getElementById('modal-title').textContent = producteSeleccionat.nom;
+      document.getElementById('modal-category').textContent = producteSeleccionat.categoria;
+      document.getElementById('modal-desc').textContent = producteSeleccionat.desc;
+
+      const priceBox = document.getElementById('modal-price-box');
+      if (producteSeleccionat.preuDescompte) {
+          priceBox.innerHTML = `
+              <div class="modal-price-main">${producteSeleccionat.preuDescompte}</div>
+              <div class="modal-price-sub">Preu original: <span style="text-decoration: line-through;">${producteSeleccionat.preuEuros}</span></div>
+          `;
+      } else {
+          priceBox.innerHTML = `<div class="modal-price-main">${producteSeleccionat.preuPts} PTS</div>`;
+      }
+
+      document.getElementById('modal-overlay').classList.add('active');
+    }
+
+    function tancarModalProducte() {
+      document.getElementById('modal-overlay').classList.remove('active');
+      producteSeleccionat = null;
+    }
+
+    function actualitzarPerfilUI() {
+        const textPunts = document.getElementById("perfil-punts");
+        if(textPunts) textPunts.textContent = puntsTotals;
+    }
+
+    function canjejarProducteActual() {
+        if (!producteSeleccionat) return;
+
+        if (puntsTotals >= producteSeleccionat.preuPts) {
+            puntsTotals -= producteSeleccionat.preuPts;
+            actualitzarPerfilUI();
+            alert(`¡Enhorabona! 🎉 Has canjejat ${producteSeleccionat.preuPts} WalltyCoins per: ${producteSeleccionat.nom}.`);
+            tancarModalProducte();
+        } else {
+            const puntsFaltants = producteSeleccionat.preuPts - puntsTotals;
+            alert(`❌ Ho sentim. No tens WalltyCoins suficients. Et falten ${puntsFaltants} WalltyCoins per poder comprar això.`);
+        }
+    }
+
+    // Quan es carrega la pàgina, es posen els productes i s'actualitza el text de punts del perfil
+    window.addEventListener('load', () => {
+      renderitzarProductes();
+      actualitzarPerfilUI();
+    });
+  </script>
 </body>
 </html>
