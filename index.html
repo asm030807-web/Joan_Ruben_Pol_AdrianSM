@@ -206,10 +206,11 @@
     .user-panel strong { display: block; margin-bottom: 8px; }
     .small-text { font-size: 13px; color: #444; margin-top: 6px; }
 
+    /* SECCIONS GENERALS */
     .page-box { background: #ededed; border-radius: 18px; padding: 30px 28px; border: 1px solid #cfcfcf; color: #111; }
     .page-box h1 { font-size: 42px; margin-bottom: 18px; }
     .page-box p { font-size: 17px; line-height: 1.6; margin-bottom: 18px; }
-    
+
     /* RUTES */
     .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 20px; }
     .route-card { background: #fff; border-radius: 14px; padding: 0; border: 1px solid #d8d8d8; overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; }
@@ -222,7 +223,7 @@
     .route-card h3 { font-size: 20px; margin-bottom: 12px; color: #111; }
     .route-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; color: #555; margin-bottom: 18px; }
     .more-routes-msg { text-align: center; padding: 25px; margin-top: 25px; background: #e6e6e6; border-radius: 14px; color: #444; font-weight: 600; border: 2px dashed #bbb; font-size: 16px;}
-
+    
     /* PRODUCTES */
     .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
     .product-card { background: #fff; border-radius: 14px; padding: 0; border: 1px solid #d8d8d8; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; }
@@ -240,9 +241,9 @@
     .hero-nosaltres p { font-size: 18px; color: #444; }
     .section-about { background: #141414; color: white; padding: 30px; border-radius: 18px; margin-top: 12px; }
     .section-about h2 { font-size: 28px; margin-bottom: 14px; }
-    .section-about p { line-height: 1.6; color: #e5e5e5; }
+    .section-about p { line-height: 1.6; color: #000000; }
     .grid-about { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
-    .card-about { background: #f3f3f3; color: #111; border-radius: 16px; padding: 18px; border: 1px solid #d3d3d3; }
+    .card-about { background: #f3f3f3; color: #000000; border-radius: 16px; padding: 18px; border: 1px solid #d3d3d3; }
     .card-about h3 { margin-bottom: 6px; }
     .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 16px; }
     .member { background: white; border-radius: 14px; padding: 14px; text-align: center; border: 1px solid #d4d4d4; color:#111;}
@@ -250,7 +251,7 @@
     .cta { background: linear-gradient(135deg, #0f8cff, #06d17c); padding: 26px; border-radius: 18px; text-align: center; margin-top: 12px; color: white; }
     .cta button { margin-top: 12px; border: none; padding: 12px 18px; border-radius: 10px; font-weight: bold; cursor: pointer; }
 
-    /* ESTILS NOUS PER A CONTACTE */
+    /* CONTACTE */
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
     .contact-card { background: #fff; border-radius: 14px; padding: 24px; border: 1px solid #d8d8d8; color: #111; }
     .contact-card h3 { color: #0d8b56; margin-bottom: 15px; font-size: 20px; display: flex; align-items: center; gap: 8px; }
@@ -333,8 +334,7 @@
           <div class="auth-card">
             <h3>Accés / Registre</h3>
             <p>
-              Pots entrar amb correu i contrasenya o amb Google. Si et registres amb correu,
-              t’enviarem un email de verificació.
+              Introdueix el teu correu i contrasenya per entrar o registrar-te. T'enviarem un correu de verificació.
             </p>
 
             <div id="auth-section">
@@ -377,81 +377,46 @@
       <div id="page-rutes" class="page-section hidden-page">
         <section class="page-box">
           <h1>Rutes Wallty</h1>
-          <p>
-            Descobreix camins, recorreguts i espais ideals per caminar. Cada ruta completada et farà guanyar WalltyCoins que podràs gastar a la botiga!
-          </p>
-
+          <p>Descobreix camins, recorreguts i espais ideals per caminar. Cada ruta completada et farà guanyar WalltyCoins que podràs gastar a la botiga!</p>
           <div class="route-grid">
-            
             <div class="route-card">
-              <div class="route-img-box">
-                <img src="https://images.unsplash.com/photo-1626244105269-80b6ea3ba8dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Congost de Mont-rebei">
-                <div class="route-points">+450 PTS</div>
-              </div>
+              <div class="route-img-box"><img src="https://images.unsplash.com/photo-1626244105269-80b6ea3ba8dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Congost de Mont-rebei"><div class="route-points">+450 PTS</div></div>
               <div class="route-info">
                 <span class="route-habitat">⛰️ Congost / Riu</span>
                 <h3>Congost de Mont-rebei</h3>
-                <div class="route-details">
-                  <div>📏 <strong>Distància:</strong> 10 km</div>
-                  <div>⏱️ <strong>Durada:</strong> 4h 00m</div>
-                </div>
+                <div class="route-details"><div>📏 <strong>Distància:</strong> 10 km</div><div>⏱️ <strong>Durada:</strong> 4h 00m</div></div>
                 <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
               </div>
             </div>
-
             <div class="route-card">
-              <div class="route-img-box">
-                <img src="https://images.unsplash.com/photo-1533903120613-2d12f6a7d084?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Camí de Ronda">
-                <div class="route-points">+300 PTS</div>
-              </div>
+              <div class="route-img-box"><img src="https://images.unsplash.com/photo-1533903120613-2d12f6a7d084?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Camí de Ronda"><div class="route-points">+300 PTS</div></div>
               <div class="route-info">
                 <span class="route-habitat">🌊 Costa / Platja</span>
                 <h3>Camí de Ronda (S'Agaró)</h3>
-                <div class="route-details">
-                  <div>📏 <strong>Distància:</strong> 6.5 km</div>
-                  <div>⏱️ <strong>Durada:</strong> 2h 15m</div>
-                </div>
+                <div class="route-details"><div>📏 <strong>Distància:</strong> 6.5 km</div><div>⏱️ <strong>Durada:</strong> 2h 15m</div></div>
                 <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
               </div>
             </div>
-
             <div class="route-card">
-              <div class="route-img-box">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pedraforca">
-                <div class="route-points">+650 PTS</div>
-              </div>
+              <div class="route-img-box"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pedraforca"><div class="route-points">+650 PTS</div></div>
               <div class="route-info">
                 <span class="route-habitat">🏔️ Alta Muntanya</span>
                 <h3>Ascensió al Pedraforca</h3>
-                <div class="route-details">
-                  <div>📏 <strong>Distància:</strong> 6.0 km</div>
-                  <div>⏱️ <strong>Durada:</strong> 5h 30m</div>
-                </div>
+                <div class="route-details"><div>📏 <strong>Distància:</strong> 6.0 km</div><div>⏱️ <strong>Durada:</strong> 5h 30m</div></div>
                 <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
               </div>
             </div>
-
             <div class="route-card">
-              <div class="route-img-box">
-                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parc de Collserola">
-                <div class="route-points">+150 PTS</div>
-              </div>
+              <div class="route-img-box"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Parc de Collserola"><div class="route-points">+150 PTS</div></div>
               <div class="route-info">
                 <span class="route-habitat">🌲 Bosc / Urbà</span>
                 <h3>Carretera de les Aigües</h3>
-                <div class="route-details">
-                  <div>📏 <strong>Distància:</strong> 9.0 km</div>
-                  <div>⏱️ <strong>Durada:</strong> 2h 00m</div>
-                </div>
+                <div class="route-details"><div>📏 <strong>Distància:</strong> 9.0 km</div><div>⏱️ <strong>Durada:</strong> 2h 00m</div></div>
                 <button class="btn btn-primary" style="width: 100%; margin-top: auto;" onclick="alert('Funcionalitat de començar ruta pròximament!')">Començar Ruta</button>
               </div>
             </div>
-
           </div>
-
-          <div class="more-routes-msg">
-            🚧 Estem preparant i cartografiant moltes més rutes! A continuació més pròximament...
-          </div>
+          <div class="more-routes-msg">🚧 Estem preparant i cartografiant moltes més rutes! A continuació més pròximament...</div>
         </section>
       </div>
 
@@ -461,7 +426,6 @@
           <p>
             Canvia els teus WalltyCoins per equipament d'aventura, roba ecològica o productes per a la llar. Fes clic a qualsevol producte per veure'n els detalls i els descomptes.
           </p>
-
           <div class="product-grid" id="productes-grid-html">
             </div>
         </section>
@@ -475,8 +439,10 @@
 
         <section class="section-about">
           <h2>Qui som</h2>
-          <p>Wallty és una plataforma creada per ajudar a descobrir rutes, activitats i experiències a la natura. El nostre objectiu és facilitar que qualsevol persona pugui explorar el territori d’una manera senzilla, segura i divertida.</p>
-          <p style="margin-top:10px;">Creiem en la tecnologia com una eina per apropar les persones a l’exploració, la sostenibilitat i l’aventura.</p>
+          <div class="card-about">
+            <p>Wallty és una plataforma creada per ajudar a descobrir rutes, activitats i experiències a la natura. El nostre objectiu és facilitar que qualsevol persona pugui explorar el territori d’una manera senzilla, segura i divertida.</p>
+            <p style="margin-top:10px;">Creiem en la tecnologia com una eina per apropar les persones a l’exploració, la sostenibilitat i l’aventura.</p>
+          </div>
         </section>
 
         <section class="section-about">
@@ -527,7 +493,6 @@
           <p>Ens encanta escoltar la nostra comunitat d'exploradors. Contacta amb nosaltres, deixa la teva ressenya o ajuda'ns a millorar Wallty.</p>
 
           <div class="contact-grid">
-            
             <div>
               <div class="contact-card" style="margin-bottom: 20px;">
                 <h3>🏢 Dades de Wallty</h3>
@@ -551,23 +516,9 @@
                 <h3>⭐ Ressenyes dels Usuaris</h3>
                 <p style="font-size: 14px; margin-bottom: 15px;">Mira què diuen els altres sobre l'experiència Wallty.</p>
                 
-                <div class="review-box">
-                  <div class="stars">★★★★★</div>
-                  <strong>Laura M.</strong>
-                  <p>"Des que utilitzo Wallty surto a caminar molt més sovint. Poder bescanviar els punts per material d'excursió és una idea genial!"</p>
-                </div>
-
-                <div class="review-box">
-                  <div class="stars">★★★★☆</div>
-                  <strong>Marc P.</strong>
-                  <p>"L'app està molt bé, les rutes estan ben explicades. M'agradaria que afegíssiu més rutes per la zona de Girona."</p>
-                </div>
-
-                <div class="review-box">
-                  <div class="stars">★★★★★</div>
-                  <strong>Júlia R.</strong>
-                  <p>"Ahir vaig fer la ruta del Mont-rebei i tot perfecte. Els WalltyCoins es sumen súper ràpid."</p>
-                </div>
+                <div class="review-box"><div class="stars">★★★★★</div><strong>Laura M.</strong><p>"Des que utilitzo Wallty surto a caminar molt més sovint. Poder bescanviar els punts per material d'excursió és una idea genial!"</p></div>
+                <div class="review-box"><div class="stars">★★★★☆</div><strong>Marc P.</strong><p>"L'app està molt bé, les rutes estan ben explicades. M'agradaria que afegíssiu més rutes per la zona de Girona."</p></div>
+                <div class="review-box"><div class="stars">★★★★★</div><strong>Júlia R.</strong><p>"Ahir vaig fer la ruta del Mont-rebei i tot perfecte. Els WalltyCoins es sumen súper ràpid."</p></div>
 
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
 
@@ -585,7 +536,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </section>
       </div>
@@ -594,7 +544,6 @@
         <section class="page-box">
           <h1>El teu Perfil</h1>
           <p>Aquí pots veure el teu progrés i gestionar el teu compte.</p>
-
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
             <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; color: #111;">
               <h3 style="color: #06d17c; margin-bottom: 15px;">Dades d'usuari</h3>
@@ -602,14 +551,12 @@
               <p><strong>Estat:</strong> Actiu</p>
               <button class="btn btn-logout" id="btnLogOutPerfil" style="margin-top: 20px;">Tancar sessió</button>
             </div>
-
             <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; text-align: center; display: flex; flex-direction: column; justify-content: center; color: #111;">
               <h3>Punts Acumulats</h3>
               <div style="font-size: 64px; font-weight: bold; color: #0d8b56;" id="perfil-punts">0</div>
               <p style="color: #666; font-weight: bold;">WalltyCoins</p>
             </div>
           </div>
-
           <div style="background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #d8d8d8; margin-top: 20px; width: 100%; color: #111;">
             <h3 style="margin-bottom: 15px;">Historial de Rutes</h3>
             <ul id="perfil-historial" style="list-style: none; padding: 0;">
@@ -628,9 +575,7 @@
         <span id="modal-category" class="tag" style="font-size: 11px; color: white; background: #111; padding: 4px 10px; border-radius: 10px; display: inline-block; margin-bottom: 8px; font-weight: 600;">CATEGORIA</span>
         <h2 id="modal-title" class="modal-title">Nom del producte</h2>
         <p id="modal-desc" class="modal-desc">Descripció del producte...</p>
-        
         <div id="modal-price-box" class="modal-price-box"></div>
-
         <button class="btn btn-primary" style="width: 100%; font-size: 16px; padding: 16px;" onclick="canjejarProducteActual()">
           Canjejar Ara
         </button>
@@ -638,6 +583,7 @@
     </div>
 
   </div> 
+
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="app.js"></script>
